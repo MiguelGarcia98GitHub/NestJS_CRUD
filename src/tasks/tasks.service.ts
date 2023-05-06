@@ -29,5 +29,12 @@ export class TasksService {
         return task;
     }
     updateTask() {}
-    deleteTask() {}
+    deleteTask(id: string) {
+       const messageToClient =   !!this.tasks.find(task => {
+        return task.id === id
+       }) ? `successfully deleted task with the id: ${id}` : `could not find a task to delete with the id: ${id}`
+       this.tasks = this.tasks.filter(task => task.id !== id)
+       return messageToClient
+     
+    }
 }
